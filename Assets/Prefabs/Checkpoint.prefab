@@ -133,3 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942a4616c23ba27439c35d1c56bb83e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashedSprite: {fileID: 21300000, guid: 718be9d2e213b4a4bb455dbe93ceaa87, type: 3}
+  greenSprite: {fileID: 21300000, guid: af9d4502baa6ecf4c9cf744578f7cc27, type: 3}
