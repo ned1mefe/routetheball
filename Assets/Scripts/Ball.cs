@@ -18,4 +18,11 @@ public class Ball : MonoBehaviour
         GameManager.instance.PlayerDie();
 
     }
+
+    public void WinEffect()
+    {
+        rigidbody2d.velocity = new Vector2(0, 3);
+        GetComponent<Collider2D>().enabled = false;
+        Destroy(gameObject, 3f);
+    }
 }

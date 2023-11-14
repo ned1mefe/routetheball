@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
         checkpoints = new List<Checkpoint>();
         foreach (GameObject checkpointObject in checkpointObjects)
         {
-            // Directly add the Checkpoint component to the list
             checkpoints.Add(checkpointObject.GetComponent<Checkpoint>());
         }
 
@@ -48,9 +47,9 @@ public class GameManager : MonoBehaviour
     }
     private void Win()
     {
-        var ball = GameObject.FindAnyObjectByType<Ball>();
+        var ball = FindAnyObjectByType<Ball>();
 
-        ball.GetComponent<Rigidbody>().velocity = Vector2.zero;
+        ball.WinEffect();
     }
     
 }
