@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
 
     public void WinEffect()
     {
-        rigidbody2d.velocity = new Vector2(0, 3);
+        rigidbody2d.velocity = new Vector2(0, 5);
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 3f);
     }

@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c484fe1a9c729504d85e2c0737a12c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 5080616677657085593, guid: e4c24a2ac850fab4fa1ed80d0de7c9a1, type: 3}
+  ballReleasePosition: {x: 0, y: 0, z: 0}
+  ballReleaseVelocity: {x: 0, y: 0}

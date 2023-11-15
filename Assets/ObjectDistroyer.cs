@@ -6,7 +6,6 @@ public class ObjectDistroyer : MonoBehaviour
     {
         if (collision.tag == "Ball")
         {
-            Destroy(collision.gameObject);
             GameManager.instance.PlayerDie();
         }
     }
