@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             checkpoint.Reset();
         }
 
-        Destroy(ball);
+        Destroy(ball.gameObject);
     }
 
     public void CheckPlayerWin()
