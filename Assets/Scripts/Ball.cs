@@ -20,8 +20,10 @@ public class Ball : MonoBehaviour
 
     public void WinEffect()
     {
-        rigidbody2d.velocity = new Vector2(0, 5);
+        rigidbody2d.velocity = new Vector2(0, 17);
         GetComponent<Collider2D>().enabled = false;
-        Destroy(gameObject, 3f);
+        rigidbody2d.gravityScale = 5;
+        Destroy(gameObject, 5f);
+
     }
 }
