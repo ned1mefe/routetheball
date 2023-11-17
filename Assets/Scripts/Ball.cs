@@ -16,7 +16,6 @@ public class Ball : MonoBehaviour
         if (!isStopped()) return;
 
         GameManager.instance.PlayerDie();
-
     }
 
     public void WinEffect()

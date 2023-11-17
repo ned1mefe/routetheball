@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,14 +7,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private Player player;
     private List<Checkpoint> checkpoints;
-    private Ball ball;
+    private static Ball ball = null;
 
     [SerializeField]
     private GameObject ballPrefab;
-    [SerializeField]
-    private Vector3 ballReleasePosition;
-    [SerializeField]
-    private Vector2 ballReleaseVelocity;
+
+    private readonly short ballReleaseVelocity = 2;
+    private readonly short ballLaunchVelocity = 5;
 
     void Awake()
     {
@@ -41,6 +39,8 @@ public class GameManager : MonoBehaviour
 
         player = new Player();
         player.Instantiate();
+
+        ball = null;
     }
 
     public void PlayerDie()
@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
         }
 
         Destroy(ball);
-        ball = null;
     }
 
     public void CheckPlayerWin()
@@ -65,11 +64,19 @@ public class GameManager : MonoBehaviour
     {
         if (ball != null) return;
 
-        Instantiate(ballPrefab, ballReleasePosition, Quaternion.identity);
+        GameObject spawner = GameObject.FindGameObjectWithTag("Spawner");
+        short multiplier = (spawner.name == "Releaser") ? ballReleaseVelocity : ballLaunchVelocity;
+        Vector2 direction = spawner.transform.up;
+        Vector2 ballVelocity = direction * multiplier;
+        
+        
+        Vector3 ballReleasePosition = spawner.transform.position;
 
-        ball = FindObjectOfType<Ball>();
+        GameObject newBallObject = Instantiate(ballPrefab, ballReleasePosition, Quaternion.identity);
+        ball = newBallObject.GetComponent<Ball>();
 
-        ball.GetComponent<Rigidbody2D>().velocity = ballReleaseVelocity;
+
+        ball.GetComponent<Rigidbody2D>().velocity = ballVelocity;
     }
 
 }
