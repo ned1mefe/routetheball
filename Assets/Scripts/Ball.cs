@@ -4,18 +4,32 @@ public class Ball : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     private readonly float stopTreshold = 0.1f;
+    private readonly float stopLimit = 1.2f;
+    private float stopDuration;
 
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        stopDuration = 0;
+        rigidbody2d.sleepMode = RigidbodySleepMode2D.NeverSleep;
     }
-    private bool isStopped() => rigidbody2d.velocity.magnitude < stopTreshold;
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!isStopped()) return;
+        if (rigidbody2d.velocity.magnitude < stopTreshold)
+        {
+            stopDuration += Time.fixedDeltaTime;
 
-        GameManager.instance.PlayerDie();
+            if (stopDuration < stopLimit) return;
+
+            GameManager.instance.PlayerDie();
+        }
+        else stopDuration = 0;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        stopDuration = 0;
     }
 
     public void WinEffect()
