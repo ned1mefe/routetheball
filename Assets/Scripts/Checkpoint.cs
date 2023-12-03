@@ -24,9 +24,9 @@ public class Checkpoint : MonoBehaviour
         {
             _spriteRenderer.sprite = greenSprite;
             achieved = true;
+            GameManager.instance.CheckPlayerWin();
         }
 
-        GameManager.instance.CheckPlayerWin();
     }
 
     public void Reset()
